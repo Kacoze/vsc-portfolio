@@ -1,0 +1,163 @@
+<!-- ══ VIEW: playwright.config.ts ══ -->
+<div class="editor-view" data-file="pwconfig" role="tabpanel" aria-label="playwright.config.ts">
+<div class="ln"><span class="kw">import</span><span class="p"> { </span><span class="var-col">defineConfig</span><span class="p">, </span><span class="type">devices</span><span class="p"> } </span><span class="kw">from</span><span class="p"> </span><span class="str">'@playwright/test'</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span class="kw">export default</span><span class="p"> </span><span class="fn">defineConfig</span><span class="p">({</span></div>
+<div class="ln">  <span class="var-col">use</span><span class="p">: { </span><span class="var-col">baseURL</span><span class="p">: </span><span class="str">'http://localhost:4173'</span><span class="p"> },</span></div>
+<div class="ln">  <span class="var-col">webServer</span><span class="p">: {</span></div>
+<div class="ln">    <span class="var-col">command</span><span class="p">: </span><span class="str">'npm run preview'</span><span class="p">,</span></div>
+<div class="ln">    <span class="var-col">url</span><span class="p">: </span><span class="str">'http://localhost:4173'</span><span class="p">,</span></div>
+<div class="ln">    <span class="var-col">reuseExistingServer</span><span class="p">: !</span><span class="var-col">process</span><span class="p">.</span><span class="var-col">env</span><span class="p">.</span><span class="var-col">CI</span><span class="p">,</span></div>
+<div class="ln">  <span class="p">},</span></div>
+<div class="ln">  <span class="var-col">projects</span><span class="p">: [</span></div>
+<div class="ln">    <span class="p">{</span></div>
+<div class="ln">      <span class="var-col">name</span><span class="p">: </span><span class="str">'chromium'</span><span class="p">,</span></div>
+<div class="ln">      <span class="var-col">testDir</span><span class="p">: </span><span class="str">'tests/e2e'</span><span class="p">,</span></div>
+<div class="ln">      <span class="var-col">use</span><span class="p">: { ...</span><span class="var-col">devices</span><span class="p">[</span><span class="str">'Desktop Chrome'</span><span class="p">] },</span></div>
+<div class="ln">    <span class="p">},</span></div>
+<div class="ln">    <span class="p">{</span></div>
+<div class="ln">      <span class="var-col">name</span><span class="p">: </span><span class="str">'mobile'</span><span class="p">,</span></div>
+<div class="ln">      <span class="var-col">testDir</span><span class="p">: </span><span class="str">'tests/e2e'</span><span class="p">,</span></div>
+<div class="ln">      <span class="var-col">use</span><span class="p">: { ...</span><span class="var-col">devices</span><span class="p">[</span><span class="str">'Pixel 5'</span><span class="p">] },</span></div>
+<div class="ln">    <span class="p">},</span></div>
+<div class="ln">  <span class="p">],</span></div>
+<div class="ln"><span class="p">)</span></div>
+</div><!-- pwconfig -->
+
+<!-- ══ VIEW: about.md ══ -->
+<div class="editor-view" data-file="md" role="tabpanel" aria-label="about.md">
+<div class="ln"><span class="md-h"># Kamil Kozieradzki</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span class="md-quote">&gt; QA &amp; Test Automation Lead at BF Games</span></div>
+<div class="ln"><span class="md-quote">&gt; 8 yrs · Playwright · TypeScript · CI/CD · Available for consulting</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span>I've spent 8 years making sure other people's code doesn't break in production. Still enjoying it.</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span class="md-h2">## Background</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span>Currently I lead QA and test automation for sportsbook and casino platforms</span></div>
+<div class="ln"><span>at BF Games, working across multiple brands and large frontend codebases.</span></div>
+<div class="ln"><span>My work includes test architecture, automation frameworks, CI integration,</span></div>
+<div class="ln"><span>and improving development workflows so testing scales with the product.</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span>Background in front-end development (JavaScript / TypeScript) helps me</span></div>
+<div class="ln"><span>approach testing from a developer perspective. I focus on pragmatic</span></div>
+<div class="ln"><span>automation, tooling, and processes that reduce manual effort while</span></div>
+<div class="ln"><span>improving release confidence.</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span class="md-h2">## Approach</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span class="md-bullet">- </span><span class="md-bold">**Testing as part of the process**</span><span> — I embed QA from the start of</span></div>
+<div class="ln"><span>  development, not as a gate at the end. Bugs caught early cost less.</span></div>
+<div class="ln"><span class="md-bullet">- </span><span class="md-bold">**Frameworks that survive scale**</span><span> — every project I join gets a</span></div>
+<div class="ln"><span>  maintainable automation layer: typed, reviewed, and running in CI.</span></div>
+<div class="ln"><span class="md-bullet">- </span><span class="md-bold">**People, not just pipelines**</span><span> — I lead a team of 8.</span></div>
+<div class="ln"><span>  The tooling matters, but so does making sure everyone</span></div>
+<div class="ln"><span>  actually uses it and understands why.</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span class="md-h2">## See also</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span class="md-bullet">- </span><span class="p">[</span><a class="md-link" href="https://www.linkedin.com/in/kozieradzkikamil/" target="_blank" rel="noopener noreferrer">LinkedIn</a><span class="p">](</span><span class="md-link">linkedin.com/in/kozieradzkikamil</span><span class="p">)</span></div>
+<div class="ln"><span class="md-bullet">- </span><span class="p">[</span><a class="md-link" href="https://github.com/kacoze" target="_blank" rel="noopener noreferrer">GitHub</a><span class="p">](</span><span class="md-link">github.com/kacoze</span><span class="p">)</span></div>
+</div><!-- md -->
+
+<!-- ══ VIEW: package.json ══ -->
+<div class="editor-view" data-file="json" role="tabpanel" aria-label="package.json">
+<div class="ln"><span class="p">{</span></div>
+<div class="ln">  <span class="prop">"name"</span><span class="p">:        </span><span class="str">"kamil-kozieradzki"</span><span class="p">,</span></div>
+<div class="ln">  <span class="prop">"version"</span><span class="p">:     </span><span class="str">"8.0.0"</span><span class="p">,</span></div>
+<div class="ln">  <span class="prop">"private"</span><span class="p">:     </span><span class="bo">true</span><span class="p">,</span></div>
+<div class="ln">  <span class="prop">"description"</span><span class="p">: </span><span class="str">"QA &amp; Test Automation Lead — sportsbook &amp; casino platforms"</span><span class="p">,</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln">  <span class="prop">"scripts"</span><span class="p">: {</span></div>
+<div class="ln" data-script="test">    <span class="prop">"test"</span><span class="p">:    </span><span class="str" style="cursor:pointer" title="▶ Run in terminal">"playwright test"</span><span class="p">,</span></div>
+<div class="ln">    <span class="prop">"report"</span><span class="p">:   </span><span class="str">"allure generate --clean"</span><span class="p">,</span></div>
+<div class="ln" data-script="lint">    <span class="prop">"lint"</span><span class="p">:    </span><span class="str" style="cursor:pointer" title="▶ Run in terminal">"eslint src/"</span></div>
+<div class="ln">  <span class="p">},</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln">  <span class="prop">"tools"</span><span class="p">: {</span></div>
+<div class="ln">    <span class="prop">"e2e"</span><span class="p">:         </span><span class="str">"@playwright/test"</span><span class="p">,</span></div>
+<div class="ln">    <span class="prop">"language"</span><span class="p">:     </span><span class="str">"typescript"</span><span class="p">,</span></div>
+<div class="ln">    <span class="prop">"reporting"</span><span class="p">:    </span><span class="str">"allure-playwright"</span><span class="p">,</span></div>
+<div class="ln">    <span class="prop">"linting"</span><span class="p">:      </span><span class="str">"eslint + @typescript-eslint"</span></div>
+<div class="ln">  <span class="p">},</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln">  <span class="prop">"ci"</span><span class="p">:       [</span><span class="str">"Jenkins"</span><span class="p">, </span><span class="str">"GitHub Actions"</span><span class="p">],</span></div>
+<div class="ln">  <span class="prop">"platforms"</span><span class="p">: [</span><span class="str">"web"</span><span class="p">, </span><span class="str">"API"</span><span class="p">, </span><span class="str">"mobile-web"</span><span class="p">],</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln">  <span class="prop">"availability"</span><span class="p">: {</span></div>
+<div class="ln">    <span class="prop">"consulting"</span><span class="p">: </span><span class="bo">true</span><span class="p">,</span></div>
+<div class="ln">    <span class="prop">"fulltime"</span><span class="p">:   </span><span class="bo">false</span></div>
+<div class="ln">  <span class="p">},</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln">  <span class="prop">"license"</span><span class="p">: </span><span class="str">"MIT"</span></div>
+<div class="ln"><span class="p">}</span></div>
+</div><!-- json -->
+
+<!-- ══ VIEW: README.md ══ -->
+<div class="editor-view" data-file="readme" role="tabpanel" aria-label="README.md">
+<div class="ln"><span class="md-h"># kamil-kozieradzki</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span>I write tests for a living and I'm weirdly okay with that.</span></div>
+<div class="ln"><span>This page is my CV — open a file from the sidebar.</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span class="md-h2">## What's where</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span class="md-bullet">- </span><span class="md-code">`about.md`</span><span> — background, experience, approach</span></div>
+<div class="ln"><span class="md-bullet">- </span><span class="md-code">`package.json`</span><span> — stack, tools, availability</span></div>
+<div class="ln"><span class="md-bullet">- </span><span class="md-code">`kamil.spec.ts`</span><span> — the same info, as a test suite</span></div>
+<div class="ln"><span class="md-bullet">- </span><span class="md-code">`.env`</span><span> — consulting status, timezone, response time</span></div>
+<div class="ln"><span class="md-bullet">- </span><span class="fn">Postman</span><span> icon in the dock — contact form</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span class="md-h2">## Contact</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span class="md-bullet">- </span><span class="md-bold">**LinkedIn**</span><span> — </span><a class="md-link" href="https://www.linkedin.com/in/kozieradzkikamil/" target="_blank" rel="noopener noreferrer">@kozieradzkikamil</a></div>
+<div class="ln"><span class="md-bullet">- </span><span class="md-bold">**GitHub**</span><span> — </span><a class="md-link" href="https://github.com/kacoze" target="_blank" rel="noopener noreferrer">@kacoze</a></div>
+</div><!-- readme -->
+
+<!-- ══ VIEW: .env ══ -->
+<div class="editor-view" data-file="env" role="tabpanel" aria-label=".env">
+<div class="ln"><span class="cmt"># ─────────────────────────────────────</span></div>
+<div class="ln"><span class="cmt"># DO NOT COMMIT · production secrets</span></div>
+<div class="ln"><span class="cmt"># ─────────────────────────────────────</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span class="cmt"># Availability flags</span></div>
+<div class="ln"><span class="prop">CONSULTING_AVAILABLE</span><span class="p">=</span><span class="bo">true</span></div>
+<div class="ln"><span class="prop">FULL_TIME_AVAILABLE</span><span class="p">=</span><span class="bo">false</span></div>
+<div class="ln"><span class="prop">RESPONSE_TIME</span><span class="p">=</span><span class="str">24h</span></div>
+<div class="ln"><span class="prop">TIMEZONE</span><span class="p">=</span><span class="str">Europe/Warsaw</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span class="cmt"># Endpoints</span></div>
+<div class="ln"><span class="prop">CONTACT_WEBHOOK</span><span class="p">=</span><span style="color:var(--err)">***REDACTED***</span></div>
+<div class="ln"><span class="prop">CONTACT_EMAIL</span><span class="p">=</span><span style="color:var(--err)">***REDACTED***</span></div>
+<div class="ln"><span class="prop">CURRENT_COMPANY</span><span class="p">=</span><span style="color:var(--err)">***REDACTED***</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span class="cmt"># Runtime</span></div>
+<div class="ln"><span class="prop">NODE_ENV</span><span class="p">=</span><span class="str">production</span></div>
+<div class="ln"><span class="prop">DEBUG</span><span class="p">=</span><span class="bo">false</span></div>
+</div><!-- env -->
+
+<!-- ══ VIEW: LICENSE ══ -->
+<div class="editor-view" data-file="license" role="tabpanel" aria-label="LICENSE">
+<div class="ln"><span>MIT License</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span>Copyright (c) 2026 Kamil Kozieradzki</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span>Permission is hereby granted, free of charge, to any person obtaining a copy</span></div>
+<div class="ln"><span>of this software and associated documentation files (the "Software"), to deal</span></div>
+<div class="ln"><span>in the Software without restriction, including without limitation the rights</span></div>
+<div class="ln"><span>to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span></div>
+<div class="ln"><span>copies of the Software, and to permit persons to whom the Software is</span></div>
+<div class="ln"><span>furnished to do so, subject to the following conditions:</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span>The above copyright notice and this permission notice shall be included in</span></div>
+<div class="ln"><span>all copies or substantial portions of the Software.</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span></div>
+<div class="ln"><span>IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span></div>
+<div class="ln"><span>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span></div>
+<div class="ln"><span>AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span></div>
+<div class="ln"><span>LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span></div>
+<div class="ln"><span>OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN</span></div>
+<div class="ln"><span>THE SOFTWARE.</span></div>
+</div><!-- license -->

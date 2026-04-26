@@ -1,0 +1,49 @@
+<section class="win ci-win" data-win-id="actions" data-win-start="minimized" aria-label="Summary — CI run" style="top:80px;left:200px;width:720px;height:auto;z-index:13">
+  <div class="win-inner">
+  <div class="win-tb">
+    <div class="tl" aria-hidden="true"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="win-title">Actions — kamil-portfolio — run #142</div>
+  </div>
+  <div class="ci-head">
+    <div class="ci-title">
+      <span class="ci-badge" id="ci-badge">✓ Passed</span>
+      <span class="ci-name">CI · test / lint / build / deploy</span>
+    </div>
+    <div class="ci-meta">
+      on <strong>main</strong> · by <a href="https://github.com/kacoze" target="_blank" rel="noopener noreferrer">@kacoze</a> · commit <a href="https://github.com/kacoze/kamil-card/commit/7f3a9e2" target="_blank" rel="noopener noreferrer" style="color:var(--kw)">7f3a9e2</a> <span style="color:var(--fg-muted)">"redesign portfolio"</span>
+    </div>
+  </div>
+  <div class="ci-jobs">
+    <div class="ci-job"><span class="ci-check" aria-label="passed">✓</span><span class="ci-name-row"><span class="step">test</span> · 15 tests passed</span><span class="ci-time">0.64s</span></div>
+    <div class="ci-steps" hidden>
+      <div class="ci-step"><span class="ci-step-ico">✓</span><span>Set up job</span><span class="ci-time">0.02s</span></div>
+      <div class="ci-step"><span class="ci-step-ico">✓</span><span>Install dependencies</span><span class="ci-time">12.3s</span></div>
+      <div class="ci-step"><span class="ci-step-ico">✓</span><span>npx playwright test</span><span class="ci-time">0.64s</span></div>
+      <div class="ci-step"><span class="ci-step-ico">✓</span><span>Upload test results</span><span class="ci-time">0.18s</span></div>
+    </div>
+    <div class="ci-job"><span class="ci-check" aria-label="passed">✓</span><span class="ci-name-row"><span class="step">lint</span> · 0 errors · 0 warnings</span><span class="ci-time">0.12s</span></div>
+    <div class="ci-steps" hidden>
+      <div class="ci-step"><span class="ci-step-ico">✓</span><span>Set up job</span><span class="ci-time">0.02s</span></div>
+      <div class="ci-step"><span class="ci-step-ico">✓</span><span>eslint src/</span><span class="ci-time">0.09s</span></div>
+      <div class="ci-step"><span class="ci-step-ico">✓</span><span>tsc --noEmit</span><span class="ci-time">0.04s</span></div>
+    </div>
+    <div class="ci-job"><span class="ci-check" aria-label="passed">✓</span><span class="ci-name-row"><span class="step">build</span> · gzipped 8.2 kB</span><span class="ci-time">0.28s</span></div>
+    <div class="ci-steps" hidden>
+      <div class="ci-step"><span class="ci-step-ico">✓</span><span>Set up job</span><span class="ci-time">0.02s</span></div>
+      <div class="ci-step"><span class="ci-step-ico">✓</span><span>vite build</span><span class="ci-time">0.24s</span></div>
+      <div class="ci-step"><span class="ci-step-ico">✓</span><span>gzip dist/index.html</span><span class="ci-time">0.02s</span></div>
+    </div>
+    <div class="ci-job"><span class="ci-check" aria-label="passed">✓</span><span class="ci-name-row"><span class="step">deploy:cloudflare-pages</span> · live</span><span class="ci-time">1.02s</span></div>
+    <div class="ci-steps" hidden>
+      <div class="ci-step"><span class="ci-step-ico">✓</span><span>Set up job</span><span class="ci-time">0.02s</span></div>
+      <div class="ci-step"><span class="ci-step-ico">✓</span><span>wrangler pages deploy</span><span class="ci-time">0.98s</span></div>
+      <div class="ci-step"><span class="ci-step-ico">✓</span><span>Purge CF cache</span><span class="ci-time">0.12s</span></div>
+    </div>
+  </div>
+  <div class="ci-foot">
+    <span>certified by <span class="commit">K. Kozieradzki</span> · MMXXVI</span>
+    <button class="ci-rerun" type="button" id="ci-rerun">↻ Re-run all jobs</button>
+    <span class="exit" id="ci-exit">→ process exited with code 0</span>
+  </div>
+  </div>
+</section>

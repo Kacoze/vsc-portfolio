@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior:smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kamil Kozieradzki – QA &amp; Test Automation Lead at BF Games. Playwright, TypeScript, Jenkins, CI/CD. 8-person team. Available for consulting.">
+  <meta name="theme-color" content="#1E1E1E">
+  <link rel="canonical" href="https://kamil.kozieradzcy.com">
+  <meta property="og:type"         content="website">
+  <meta property="og:url"          content="https://kamil.kozieradzcy.com">
+  <meta property="og:title"        content="Kamil Kozieradzki — QA Engineering Lead">
+  <meta property="og:description"  content="Portfolio as a VS Code workspace. Playwright, TypeScript, CI/CD.">
+  <meta name="twitter:card"        content="summary">
+  <meta name="twitter:title"       content="Kamil Kozieradzki — QA Engineering Lead">
+  <meta name="twitter:description" content="Portfolio as a VS Code workspace. Playwright, TypeScript, CI/CD.">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <title>Kamil Kozieradzki — QA Engineering Lead</title>
+  <script type="module" src="/main.ts"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<main id="main" class="desktop">
+
+  <nav class="dock" aria-label="Application dock">
+
+    <!-- VS Code icon — official colors -->
+    <button class="dock-icon win-open" data-win="vscode" title="Code" aria-label="Visual Studio Code">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="vsc-bg" x1="50%" y1="0%" x2="50%" y2="100%">
+            <stop offset="0%" stop-color="#2489CA"/>
+            <stop offset="100%" stop-color="#1070AA"/>
+          </linearGradient>
+          <clipPath id="vsc-clip"><rect width="100" height="100" rx="22"/></clipPath>
+        </defs>
+        <rect width="100" height="100" rx="22" fill="url(#vsc-bg)"/>
+        <g clip-path="url(#vsc-clip)" fill="none">
+          <path d="M71.3 7.4L49.7 27.3 32 14 24 20.3 43.8 37.5 24 54.7 32 61 49.7 47.7 71.3 67.6 80 62.3V12.7L71.3 7.4Z" fill="rgba(255,255,255,0.25)"/>
+          <path d="M71.3 7.4L37.6 37.5 24 26.7 16 32.3v35.4l8 5.6 13.6-10.8L71.3 92.6 80 87.3V12.7L71.3 7.4Z" fill="white"/>
+          <path d="M71.3 92.6L49.7 72.7 37.6 82.5 24 73.3V54.7L37.6 62.5 49.7 52.3 71.3 67.6V92.6Z" fill="rgba(255,255,255,0.25)"/>
+        </g>
+      </svg>
+      <div class="dock-dot"></div>
+    </button>
+
+    <div class="dock-sep"></div>
+
+    <!-- Postman icon — official -->
+    <button class="dock-icon win-minimized dock-bounce" data-win="postman" title="Postman" aria-label="Postman">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="pm-bg" x1="50%" y1="0%" x2="50%" y2="100%">
+            <stop offset="0%" stop-color="#FF8050"/>
+            <stop offset="100%" stop-color="#E8500A"/>
+          </linearGradient>
+        </defs>
+        <rect width="100" height="100" rx="22" fill="url(#pm-bg)"/>
+        <g fill="white">
+          <ellipse cx="50" cy="50" r="27" fill="none" stroke="white" stroke-width="7" opacity="0.3"/>
+          <path d="M39 39l22 11-11 22-6-17-5 5-5-5 5-5z" opacity="0.95"/>
+        </g>
+      </svg>
+      <div class="dock-dot"></div>
+    </button>
+
+    <!-- GitHub Actions icon — official -->
+    <button class="dock-icon win-open" data-win="actions" title="GitHub Actions" aria-label="GitHub Actions">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gh-bg" x1="50%" y1="0%" x2="50%" y2="100%">
+            <stop offset="0%" stop-color="#2DA44E"/>
+            <stop offset="100%" stop-color="#1A7F37"/>
+          </linearGradient>
+        </defs>
+        <rect width="100" height="100" rx="22" fill="url(#gh-bg)"/>
+        <g fill="none" stroke="white" stroke-linecap="round">
+          <circle cx="26" cy="38" r="8" stroke-width="5" fill="white"/>
+          <circle cx="74" cy="38" r="8" stroke-width="5" fill="white"/>
+          <circle cx="50" cy="68" r="8" stroke-width="5" fill="white"/>
+          <line x1="34" y1="38" x2="66" y2="38" stroke-width="5"/>
+          <line x1="26" y1="46" x2="44" y2="60" stroke-width="5"/>
+          <line x1="74" y1="46" x2="56" y2="60" stroke-width="5"/>
+        </g>
+        <path d="M43 68l5 5 9-9" stroke="white" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="dock-dot"></div>
+    </button>
+
+  </nav>
+
+  <div class="wm-canvas">
+
+    <!-- ═════ VS CODE WINDOW ═════ -->
+    <section class="win vsc-win maximized"
+      data-win-id="vscode"
+      data-win-start="maximized"
+      data-premax-l="20px" data-premax-t="20px"
+      data-premax-w="calc(100% - 40px)" data-premax-h="680px"
+      data-active="spec"
+      aria-label="Kamil Kozieradzki — QA &amp; Test Automation Lead"
+      style="left:0;top:0;width:100%;height:calc(100vh - 90px);z-index:11">
+
+      <div class="win-inner">
+
+        <div class="win-tb" role="presentation">
+          <div class="tl" aria-hidden="true">
+            <span class="r"></span>
+            <span class="y"></span>
+            <span class="g"></span>
+          </div>
+          <div class="win-title">
+            <span class="dot" aria-hidden="true"></span>
+            <span data-title>kamil.spec.ts — kamil-portfolio</span>
+          </div>
+        </div><!-- .win-tb -->
+
+        <div class="vsc">
+
+          <nav class="act-bar" aria-label="Activity bar">
+            <button class="act-btn active" type="button" data-panel="explorer" aria-label="Explorer" title="Explorer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 5h7l2 3h9v11H3V5z"/></svg>
+            </button>
+            <button class="act-btn" type="button" data-panel="search" aria-label="Search" title="Search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="6"/><path d="m20 20-4-4"/></svg>
+            </button>
+            <button class="act-btn" type="button" data-panel="sc" aria-label="Source Control" title="Source Control">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="12" r="2.5"/><path d="M6 8.5V16M8 7l8 4M8 17l8-4"/></svg>
+              <span class="badge">3</span>
+            </button>
+            <button class="act-btn" type="button" data-panel="run" aria-label="Run and Debug" title="Run and Debug">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="8,5 19,12 8,19" fill="currentColor"/></svg>
+            </button>
+            <button class="act-btn" type="button" data-panel="ext" aria-label="Extensions" title="Extensions">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><path d="M13 15h7v3h-3v2h-4v-5z"/></svg>
+            </button>
+            <div class="act-sp"></div>
+          </nav><!-- .act-bar -->
+
+          <aside class="sidebar" aria-label="Activity panel">
+
+            <div class="panel-view" data-panel="explorer">
+              <div class="sb-head"><span>Explorer</span><span class="more" aria-hidden="true">⋯</span></div>
+              <div class="sb-head" style="padding-top:4px"><span style="color:var(--fg)">▾ KAMIL-PORTFOLIO</span></div>
+              <ul class="files" role="tree">
+                <li class="folder" role="treeitem"><span class="chev">▸</span><span class="ico">▢</span>node_modules</li>
+                <li class="folder expandable" role="treeitem" tabindex="0" data-folder="src" data-expanded="true" aria-expanded="true"><span class="chev">▾</span><span class="ico">▢</span>src</li>
+                <li class="file nested active" role="treeitem" aria-selected="true" tabindex="0" data-file-sidebar="spec" data-parent="src"><span class="ico ts">TS</span>kamil.spec.ts</li>
+                <li class="file nested" role="treeitem" tabindex="0" data-file-sidebar="md" data-parent="src"><span class="ico md">md</span>about.md</li>
+                <li class="file" role="treeitem" tabindex="0" data-file-sidebar="json"><span class="ico json">{}</span>package.json</li>
+                <li class="file" role="treeitem" tabindex="0" data-file-sidebar="pwconfig"><span class="ico ts">TS</span>playwright.config.ts</li>
+                <li class="file" role="treeitem" tabindex="0" data-file-sidebar="readme"><span class="ico md">md</span>README.md</li>
+                <li class="file" role="treeitem" tabindex="0" data-file-sidebar="env"><span class="ico env">·</span>.env</li>
+                <li class="file" role="treeitem" tabindex="0" data-file-sidebar="license"><span class="ico md" style="color:#B5B5B5">md</span>LICENSE</li>
+              </ul>
+            </div><!-- explorer -->
+
+            <div class="panel-view" data-panel="search" hidden>
+              <div class="sb-head"><span>Search</span></div>
+              <input class="sb-search" type="text" placeholder="Find in files…" aria-label="Search files">
+              <div class="sb-search-results"></div>
+            </div><!-- search -->
+
+            <div class="panel-view" data-panel="sc" hidden>
+              <div class="sb-head"><span>Source Control</span><span class="more" aria-hidden="true">⋯</span></div>
+              <div class="sb-head" style="padding-top:4px"><span style="color:var(--fg)">▾ CHANGES · 3</span></div>
+              <ul class="sc-changes">
+                <li><span class="sc-status m">M</span>kamil.spec.ts</li>
+                <li><span class="sc-status m">M</span>package.json</li>
+                <li><span class="sc-status a">A</span>.env</li>
+              </ul>
+              <div class="sb-head" style="padding-top:12px"><span style="color:var(--fg)">▾ RECENT COMMITS</span></div>
+              <ul class="sc-commits">
+                <li><span class="sc-hash" data-diff="- data-expanded=&quot;false&quot;&#10;+ data-expanded=&quot;true&quot;&#10;+ &lt;li data-parent=&quot;src&quot;&gt;" style="cursor:pointer">45a01c1</span>feat: collapsible src folder…</li>
+                <li><span class="sc-hash" data-diff="- color: var(--fg-subtle)&#10;+ color: var(--fg-muted)" style="cursor:pointer">7245a16</span>a11y: raise .panel-act contrast</li>
+                <li><span class="sc-hash" data-diff="- --fg-subtle: #5A5A5A&#10;+ --fg-subtle: #6B6B6B&#10;- min-height: 0&#10;+ min-height: 24px" style="cursor:pointer">8ed88d9</span>a11y: fix desktop contrast + touch</li>
+              </ul>
+            </div><!-- sc -->
+
+            <div class="panel-view" data-panel="run" hidden>
+              <div class="sb-head"><span>Run and Debug</span></div>
+              <div class="sb-head" style="padding-top:4px"><span style="color:var(--fg)">▾ SCRIPTS</span></div>
+              <ul class="run-list">
+                <li data-run="test" tabindex="0"><span class="run-play">▶</span>npm test<span class="run-sub">10 tests</span></li>
+                <li data-run="build" tabindex="0"><span class="run-play">▶</span>npm run build<span class="run-sub">vite</span></li>
+                <li data-run="lint" tabindex="0"><span class="run-play">▶</span>npm run lint<span class="run-sub">eslint</span></li>
+                <li data-run="deploy" tabindex="0"><span class="run-play">▶</span>npm run deploy<span class="run-sub">cf-pages</span></li>
+                <li data-run="contact" tabindex="0"><span class="run-play">▶</span>npm run contact<span class="run-sub">n8n</span></li>
+              </ul>
+            </div><!-- run -->
+
+            <div class="panel-view" data-panel="ext" hidden>
+              <div class="sb-head"><span>Extensions</span></div>
+              <input class="sb-search" type="text" placeholder="Search extensions…" aria-label="Search extensions">
+              <div class="sb-head" style="padding-top:4px"><span style="color:var(--fg)">▾ INSTALLED · 7</span></div>
+              <ul class="ext-list">
+                <li data-tt="End-to-end testing for modern web apps"><div class="ext-name">Playwright</div><div class="ext-meta">Microsoft · ★ 4.8 · 2.1M</div></li>
+                <li data-tt="TypeScript language features"><div class="ext-name">TypeScript</div><div class="ext-meta">Microsoft · ★ 4.9 · built-in</div></li>
+                <li data-tt="Integrates ESLint into VS Code"><div class="ext-name">ESLint</div><div class="ext-meta">Microsoft · ★ 4.7 · 39M</div></li>
+                <li data-tt="Opinionated code formatter"><div class="ext-name">Prettier</div><div class="ext-meta">Prettier · ★ 4.7 · 48M</div></li>
+                <li data-tt="Supercharge Git capabilities inside VS Code"><div class="ext-name">GitLens</div><div class="ext-meta">GitKraken · ★ 4.8 · 31M</div></li>
+                <li data-tt="Cypress code snippets and autocomplete"><div class="ext-name">Cypress Snippets</div><div class="ext-meta">andrew-codes · ★ 4.5 · 458K</div></li>
+                <li data-tt="Docker integration and container management"><div class="ext-name">Docker</div><div class="ext-meta">Microsoft · ★ 4.5 · 25M</div></li>
+              </ul>
+            </div><!-- ext -->
+
+          </aside><!-- .sidebar -->
+
+          <div class="vsc-main">
+
+            <div class="tabs" role="tablist">
+              <button class="tab active" role="tab" aria-selected="true" data-file-tab="spec" type="button"><span class="ico ts" style="color:#4B9EE3">TS</span>kamil.spec.ts<span class="close" aria-label="Close tab" role="button">×</span></button>
+              <button class="tab tab-desktop-only" role="tab" aria-selected="false" data-file-tab="pwconfig" type="button"><span class="ico ts" style="color:#4B9EE3">TS</span>playwright.config.ts<span class="close" aria-label="Close tab" role="button">×</span></button>
+              <button class="tab" role="tab" aria-selected="false" data-file-tab="md" type="button"><span class="ico md" style="color:#4B9EE3">md</span>about.md<span class="close" aria-label="Close tab" role="button">×</span></button>
+              <button class="tab" role="tab" aria-selected="false" data-file-tab="json" type="button"><span class="ico json" style="color:#F5A623">{}</span>package.json<span class="close" aria-label="Close tab" role="button">×</span></button>
+            </div><!-- .tabs -->
+
+            <div class="breadcrumbs" aria-label="File path">
+              <span class="bc-seg">kamil-portfolio</span>
+              <span class="bc-sep">›</span>
+              <span class="bc-seg" data-bc-src>src</span>
+              <span class="bc-sep" data-bc-srcsp>›</span>
+              <span class="bc-seg bc-cur" data-bc-file>kamil.spec.ts</span>
+            </div>
+
+            <div class="editor-views" style="flex-direction:row">
+              <div class="editor-col" style="flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden">
+
+                <!-- ══ VIEW: kamil.spec.ts — default, loaded immediately ══ -->
+                <div class="editor-view active" data-file="spec" role="tabpanel" aria-label="kamil.spec.ts">
+<div class="ln"><span class="cmt">/**</span></div>
+<div class="ln"><span class="cmt"> *  ═══════════════════════════════════════════</span></div>
+<div class="ln"><span class="cmt"> *    <span class="bigname">Kamil Kozieradzki</span></span></div>
+<div class="ln"><span class="cmt"> *    <span class="role">QA &amp; Test Automation Lead · BF Games</span></span></div>
+<div class="ln"><span class="cmt"> *    <span class="role">8 yrs · Playwright · TypeScript · CI/CD</span></span></div>
+<div class="ln"><span class="cmt"> *  ═══════════════════════════════════════════</span></div>
+<div class="ln"><span class="cmt"> *</span></div>
+<div class="ln"><span class="cmt"> *    LinkedIn  → </span><a href="https://www.linkedin.com/in/kozieradzkikamil/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in new tab)">in/kozieradzkikamil</a><span class="cmt"> ↗</span></div>
+<div class="ln"><span class="cmt"> *    GitHub    → </span><a href="https://github.com/kacoze" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in new tab)">@kacoze</a><span class="cmt">             ↗</span></div>
+<div class="ln"><span class="cmt"> *</span></div>
+<div class="ln"><span class="cmt"> *    ← explore the sidebar: </span><span class="cmt"><span style="color:var(--md-h2)">about.md</span></span><span class="cmt">, </span><span class="cmt"><span style="color:var(--str)">package.json</span></span><span class="cmt">, </span><span class="cmt"><span style="color:var(--md-h2)">README.md</span></span></div>
+<div class="ln"><span class="cmt"> */</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span class="kw">import</span><span class="p"> { </span><span class="var-col">describe</span><span class="p">, </span><span class="var-col">it</span><span class="p">, </span><span class="var-col">expect</span><span class="p"> } </span><span class="kw">from</span><span class="p"> </span><span class="str">'@playwright/test'</span><span class="p">;</span></div>
+<div class="ln"><span class="kw">import</span><span class="p"> { </span><span class="var-col">profile</span><span class="p">, </span><span class="var-col">team</span><span class="p">, </span><span class="var-col">stack</span><span class="p">, </span><span class="var-col">availability</span><span class="p"> } </span><span class="kw">from</span><span class="p"> </span><span class="str">'fixtures'</span><span class="p">;</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span class="fn">describe</span><span class="p">(</span><span class="str">'Kamil Kozieradzki'</span><span class="p">, () => {</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln">  <span class="fn">describe</span><span class="p">(</span><span class="str">'experience'</span><span class="p">, () => {</span></div>
+<div class="ln">    <span class="fn">it</span><span class="p">(</span><span class="str">'8 yrs at BF Games — sportsbook &amp; casino platforms'</span><span class="p">, () =></span></div>
+<div class="ln">      <span class="fn">expect</span><span class="p">(</span><span class="var-col">profile</span><span class="p">.</span><span class="prop">tenure</span><span class="p">).</span><span class="fn">toBeGreaterThanOrEqual</span><span class="p">(</span><span class="num">8</span><span class="p">));</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln">    <span class="fn">it</span><span class="p">(</span><span class="str">'covers frontend &amp; backend — multiple brands'</span><span class="p">, () =></span></div>
+<div class="ln">      <span class="fn">expect</span><span class="p">(</span><span class="var-col">profile</span><span class="p">.</span><span class="prop">scope</span><span class="p">).</span><span class="fn">toContain</span><span class="p">(</span><span class="str">'full-stack QA'</span><span class="p">));</span></div>
+<div class="ln">  <span class="p">});</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln">  <span class="fn">describe</span><span class="p">(</span><span class="str">'leadership'</span><span class="p">, () => {</span></div>
+<div class="ln">    <span class="fn">it</span><span class="p">(</span><span class="str">'leads 8-person unified QA &amp; automation team'</span><span class="p">, () =></span></div>
+<div class="ln">      <span class="fn">expect</span><span class="p">(</span><span class="var-col">team</span><span class="p">.</span><span class="prop">size</span><span class="p">).</span><span class="fn">toBe</span><span class="p">(</span><span class="num">8</span><span class="p">));</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln">    <span class="fn">it</span><span class="p">(</span><span class="str">'designs test strategy for multi-service systems'</span><span class="p">, () =></span></div>
+<div class="ln">      <span class="fn">expect</span><span class="p">(</span><span class="var-col">team</span><span class="p">.</span><span class="prop">strategy</span><span class="p">).</span><span class="fn">toInclude</span><span class="p">(</span><span class="str">'CI/CD quality gates'</span><span class="p">));</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln">    <span class="fn">it</span><span class="p">(</span><span class="str">'coordinates QA across multiple development teams'</span><span class="p">, () =></span></div>
+<div class="ln">      <span class="fn">expect</span><span class="p">(</span><span class="var-col">team</span><span class="p">.</span><span class="prop">coordination</span><span class="p">).</span><span class="fn">toBe</span><span class="p">(</span><span class="str">'cross-functional'</span><span class="p">));</span></div>
+<div class="ln">  <span class="p">});</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln">  <span class="fn">describe</span><span class="p">(</span><span class="str">'expertise'</span><span class="p">, () => {</span></div>
+<div class="ln">    <span class="fn">it</span><span class="p">(</span><span class="str">'Playwright + TypeScript — primary E2E stack'</span><span class="p">, () =></span></div>
+<div class="ln">      <span class="fn">expect</span><span class="p">(</span><span class="var-col">stack</span><span class="p">.</span><span class="prop">automation</span><span class="p">).</span><span class="fn">toMatchObject</span><span class="p">({ </span><span class="prop">framework</span><span class="p">: </span><span class="str">'Playwright'</span><span class="p">, </span><span class="prop">language</span><span class="p">: </span><span class="str">'TypeScript'</span><span class="p"> }));</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln">    <span class="fn">it</span><span class="p">(</span><span class="str">'Jenkins + GitHub Actions CI/CD integration'</span><span class="p">, () =></span></div>
+<div class="ln">      <span class="fn">expect</span><span class="p">(</span><span class="var-col">stack</span><span class="p">.</span><span class="prop">ci</span><span class="p">).</span><span class="fn">toEqual</span><span class="p">([</span><span class="str">'Jenkins'</span><span class="p">, </span><span class="str">'GitHub Actions'</span><span class="p">]);</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln">    <span class="fn">it</span><span class="p">(</span><span class="str">'frontend background — TypeScript, developer mindset'</span><span class="p">, () =></span></div>
+<div class="ln">      <span class="fn">expect</span><span class="p">(</span><span class="var-col">profile</span><span class="p">.</span><span class="prop">background</span><span class="p">).</span><span class="fn">toBe</span><span class="p">(</span><span class="str">'frontend dev'</span><span class="p">));</span></div>
+<div class="ln">  <span class="p">});</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln">  <span class="fn">describe</span><span class="p">(</span><span class="str">'availability'</span><span class="p">, () => {</span></div>
+<div class="ln">    <span class="fn">it</span><span class="p">(</span><span class="str">'open for consulting engagements'</span><span class="p">, () =></span></div>
+<div class="ln">      <span class="fn">expect</span><span class="p">(</span><span class="var-col">availability</span><span class="p">.</span><span class="prop">consulting</span><span class="p">).</span><span class="fn">toBe</span><span class="p">(</span><span class="bo">true</span><span class="p">));</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln">    <span class="fn">it</span><span class="p">(</span><span class="str">'not looking for full-time positions'</span><span class="p">, () =></span></div>
+<div class="ln">      <span class="fn">expect</span><span class="p">(</span><span class="var-col">availability</span><span class="p">.</span><span class="prop">fulltime</span><span class="p">).</span><span class="fn">toBe</span><span class="p">(</span><span class="bo">false</span><span class="p">));</span></div>
+<div class="ln">  <span class="p">});</span></div>
+<div class="ln"><span> </span></div>
+<div class="ln"><span class="p">});</span></div>
+                </div><!-- .editor-view[spec] -->
+
+                <!-- remaining editor views injected lazily — see src/templates/editor-views.html -->
+
+              </div><!-- .editor-col -->
+              <div class="minimap" aria-hidden="true" id="vsc-minimap">
+                <div class="mm-cursor" id="mm-cursor"></div>
+              </div>
+            </div><!-- .editor-views -->
+
+            <div class="panel-resize" aria-hidden="true"></div>
+
+            <div class="panel">
+              <div class="panel-tabs" role="tablist">
+                <button class="ptab" type="button" data-ptab="problems" role="tab">Problems<span class="ct">0</span></button>
+                <button class="ptab" type="button" data-ptab="output" role="tab">Output</button>
+                <button class="ptab" type="button" data-ptab="debug" role="tab">Debug Console</button>
+                <button class="ptab active" type="button" data-ptab="terminal" role="tab" aria-selected="true">Terminal</button>
+                <button class="ptab" type="button" data-ptab="ports" role="tab">Ports</button>
+                <div class="panel-act" aria-hidden="true">zsh — node</div>
+              </div><!-- .panel-tabs -->
+
+              <div class="pv" data-pv="problems" hidden>
+                <div class="pv-empty">No problems have been detected in the workspace.</div>
+              </div>
+
+              <div class="pv" data-pv="output" hidden>
+                <div class="pv-output-head">Log <span class="pv-dim">(Build Tasks)</span></div>
+<div class="pv-line"><span class="pv-dim">[12:04:18]</span> Starting build…</div>
+<div class="pv-line"><span class="pv-dim">[12:04:18]</span> vite v5.4.0 building for production</div>
+<div class="pv-line"><span class="pv-dim">[12:04:18]</span> transforming modules…</div>
+<div class="pv-line"><span class="pv-dim">[12:04:18]</span> <span class="pass">✓</span> 1 modules transformed</div>
+<div class="pv-line"><span class="pv-dim">[12:04:18]</span> dist/index.html  <span class="pass">72.5 kB</span> (gz 8.9 kB)</div>
+<div class="pv-line"><span class="pv-dim">[12:04:18]</span> <span class="pass">✓</span> built in 0.28s · exit 0</div>
+              </div><!-- output -->
+
+              <div class="pv" data-pv="debug" hidden>
+                <div class="pv-empty">No debug session active.<br>Press <span class="pv-kbd">F5</span> to start debugging, or pick a configuration from <span class="pv-kbd">Run and Debug</span>.</div>
+              </div>
+
+              <div class="pv active" data-pv="terminal">
+                <div class="term-body" aria-label="Interactive terminal">
+<div class="t-line"><span class="muted">Welcome to</span> <span class="cmd">kamil-portfolio</span><span class="muted">.</span> Type <span class="cmd">help</span> for commands.</div>
+<div class="t-line">&nbsp;</div>
+<div class="t-line"><span class="muted">kamil@local</span> <span class="muted">kamil-portfolio</span> % <span class="cmd">npx playwright test --project=kamil.spec</span></div>
+<div class="t-line">&nbsp;</div>
+<div class="t-line">Running <span class="pass">10 tests</span> using 1 worker</div>
+<div class="t-line">&nbsp;</div>
+<div class="t-line">  <span class="pass">✓</span>  experience › 8 yrs at BF Games              0.58s</div>
+<div class="t-line">  <span class="pass">✓</span>  experience › covers frontend &amp; backend  0.29s</div>
+<div class="t-line">&nbsp;</div>
+<div class="t-line">  <span class="pass">✓</span>  leadership › leads QA &amp; automation team 0.25s</div>
+<div class="t-line">  <span class="pass">✓</span>  leadership › designs test strategy          0.27s</div>
+<div class="t-line">  <span class="pass">✓</span>  leadership › coordinates QA across teams    0.25s</div>
+<div class="t-line">&nbsp;</div>
+<div class="t-line">  <span class="pass">✓</span>  expertise › Playwright + TypeScript         0.28s</div>
+<div class="t-line">  <span class="pass">✓</span>  expertise › Jenkins + GitHub Actions        0.25s</div>
+<div class="t-line">  <span class="pass">✓</span>  expertise › frontend background             0.26s</div>
+<div class="t-line">&nbsp;</div>
+<div class="t-line">  <span class="pass">✓</span>  availability › open for consulting          0.27s</div>
+<div class="t-line">  <span class="pass">✓</span>  availability › not looking for full-time    0.28s</div>
+<div class="t-line">&nbsp;</div>
+<div class="t-line">  <span class="pass">10 passed</span> (4.0s)</div>
+<div class="t-line">&nbsp;</div>
+<div class="t-line term-input-line"><span class="muted">kamil@local</span> <span class="muted">kamil-portfolio</span> % <input class="term-input" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Terminal input"></div>
+                </div><!-- .term-body -->
+              </div><!-- terminal -->
+
+              <div class="pv" data-pv="ports" hidden>
+                <div class="pv-output-head">Forwarded Ports</div>
+                <div class="port-row">
+                  <span class="port-num">5173</span>
+                  <span class="port-label">vite dev server</span>
+                  <a href="#" class="port-link" onclick="return false">localhost:5173 ↗</a>
+                  <span class="port-vis">private</span>
+                </div>
+              </div><!-- ports -->
+
+            </div><!-- .panel -->
+
+          </div><!-- .vsc-main -->
+
+        </div><!-- .vsc -->
+
+        <div class="status" role="status" aria-label="Editor status">
+          <div class="sb-grp">
+            <span aria-label="Branch">⎇ main</span>
+            <span class="hide-m">↓0 ↑0</span>
+            <span>⊗ 0 ⚠ 0</span>
+          </div>
+          <div class="sb-grp">
+            <span class="sb-ln"></span>
+            <span class="hide-m">UTF-8</span>
+            <span class="hide-m">LF</span>
+            <span class="hide-m">✓ Prettier</span>
+          </div>
+        </div><!-- .status -->
+
+      </div><!-- .win-inner -->
+
+    </section><!-- .vsc-win -->
+
+  </div><!-- .wm-canvas -->
+
+</main>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Kamil Kozieradzki","url":"https://kamil.kozieradzcy.com","jobTitle":"QA Engineering Lead","sameAs":["https://www.linkedin.com/in/kozieradzkikamil/","https://github.com/kacoze"]}
+</script>
+</body>
+</html>
