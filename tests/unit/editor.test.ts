@@ -38,7 +38,7 @@ const EDITOR_HTML = `
       </ul>
     </div>
     <div class="sb-ln"></div>
-    <div class="sc-status"></div>
+    <div class="sc-status m">M</div>
   </div>
   <div class="editor-view active" data-file="spec" role="tabpanel" aria-label="kamil.spec.ts">
     <div class="ln">describe('test', () => {</div>
@@ -80,7 +80,14 @@ const EDITOR_HTML = `
   </div>
   <div class="status">
     <span aria-label="Branch">⎇ main</span>
+    <span>✓ Prettier</span>
+    <span>UTF-8</span>
+    <span>LF</span>
+    <span>⊗ 0</span>
   </div>
+  <span data-bc-file></span>
+  <span data-bc-src style="display:none"></span>
+  <span data-bc-srcsp style="display:none"></span>
 </div>`
 
 function run(cmd: string): void {
@@ -318,6 +325,217 @@ describe('Editor module', () => {
       const item = document.querySelector<HTMLElement>('[data-file-sidebar="json"]')!
       item.click()
       expect(item.getAttribute('aria-selected')).toBe('true')
+    })
+  })
+
+  describe('Status bar — branch dropdown', () => {
+    it('click on branch span opens .branch-dropdown', () => {
+      document.querySelector<HTMLElement>('[aria-label="Branch"]')!.click()
+      expect(document.querySelector('.branch-dropdown')).not.toBeNull()
+    })
+
+    it('dropdown contains 3 branch options', () => {
+      document.querySelector<HTMLElement>('[aria-label="Branch"]')!.click()
+      expect(document.querySelectorAll('.branch-dropdown li').length).toBe(3)
+    })
+
+    it('first item has .cur class (current branch)', () => {
+      document.querySelector<HTMLElement>('[aria-label="Branch"]')!.click()
+      expect(document.querySelector('.branch-dropdown li.cur')?.textContent).toBe('main')
+    })
+
+    it('click second branch option updates label', () => {
+      const branch = document.querySelector<HTMLElement>('[aria-label="Branch"]')!
+      branch.click()
+      document.querySelectorAll<HTMLElement>('.branch-dropdown li')[1].click()
+      expect(branch.textContent).toBe('⎇ feat/wm-redesign')
+    })
+
+    it('click branch span again when open closes dropdown', () => {
+      const branch = document.querySelector<HTMLElement>('[aria-label="Branch"]')!
+      branch.click()
+      branch.click()
+      expect(document.querySelector('.branch-dropdown')).toBeNull()
+    })
+  })
+
+  describe('Status bar — Prettier, encoding, line ending', () => {
+    it('click Prettier shows Formatting… immediately', () => {
+      const pret = Array.from(document.querySelectorAll<HTMLElement>('.status span'))
+        .find(s => s.textContent?.includes('Prettier'))!
+      pret.click()
+      expect(pret.textContent).toBe('Formatting…')
+    })
+
+    it('after timers Prettier label restored', () => {
+      vi.useFakeTimers()
+      const pret = Array.from(document.querySelectorAll<HTMLElement>('.status span'))
+        .find(s => s.textContent === '✓ Prettier')!
+      pret.click()
+      vi.runAllTimers()
+      expect(pret.textContent).toBe('✓ Prettier')
+      vi.useRealTimers()
+    })
+
+    it('click UTF-8 cycles to UTF-16', () => {
+      const enc = Array.from(document.querySelectorAll<HTMLElement>('.status span'))
+        .find(s => s.textContent === 'UTF-8')!
+      enc.click()
+      expect(enc.textContent).toBe('UTF-16')
+    })
+
+    it('click UTF-8 twice gives ASCII', () => {
+      const enc = Array.from(document.querySelectorAll<HTMLElement>('.status span'))
+        .find(s => s.textContent === 'UTF-8')!
+      enc.click()
+      enc.click()
+      expect(enc.textContent).toBe('ASCII')
+    })
+
+    it('click UTF-8 three times wraps back to UTF-8', () => {
+      const enc = Array.from(document.querySelectorAll<HTMLElement>('.status span'))
+        .find(s => s.textContent === 'UTF-8')!
+      enc.click(); enc.click(); enc.click()
+      expect(enc.textContent).toBe('UTF-8')
+    })
+
+    it('click LF cycles to CRLF', () => {
+      const lf = Array.from(document.querySelectorAll<HTMLElement>('.status span'))
+        .find(s => s.textContent?.trim() === 'LF')!
+      lf.click()
+      expect(lf.textContent).toBe('CRLF')
+    })
+
+    it('click LF twice gives CR', () => {
+      const lf = Array.from(document.querySelectorAll<HTMLElement>('.status span'))
+        .find(s => s.textContent?.trim() === 'LF')!
+      lf.click(); lf.click()
+      expect(lf.textContent).toBe('CR')
+    })
+  })
+
+  describe('Line click — breakpoint and highlight', () => {
+    function clickLn(ln: HTMLElement, clientX: number): void {
+      vi.spyOn(ln, 'getBoundingClientRect').mockReturnValue(
+        { left: 0, top: 0, right: 100, bottom: 20, width: 100, height: 20, x: 0, y: 0, toJSON: () => ({}) } as DOMRect
+      )
+      ln.dispatchEvent(new MouseEvent('click', { bubbles: true, clientX }))
+    }
+
+    it('click at x=10 (< 52) adds .bp class', () => {
+      const ln = document.querySelector<HTMLElement>('.editor-view.active .ln')!
+      clickLn(ln, 10)
+      expect(ln.classList.contains('bp')).toBe(true)
+    })
+
+    it('click at x=10 twice toggles .bp off', () => {
+      const ln = document.querySelector<HTMLElement>('.editor-view.active .ln')!
+      clickLn(ln, 10)
+      clickLn(ln, 10)
+      expect(ln.classList.contains('bp')).toBe(false)
+    })
+
+    it('click at x=100 (>= 52) adds .hi class', () => {
+      const ln = document.querySelector<HTMLElement>('.editor-view.active .ln')!
+      clickLn(ln, 100)
+      expect(ln.classList.contains('hi')).toBe(true)
+    })
+
+    it('click at x=100 updates .sb-ln text', () => {
+      const ln = document.querySelector<HTMLElement>('.editor-view.active .ln')!
+      clickLn(ln, 100)
+      expect(document.querySelector('.sb-ln')!.textContent).toMatch(/Ln \d+/)
+    })
+  })
+
+  describe('Breadcrumbs — MutationObserver', () => {
+    it('switching to md updates bcFile to about.md', async () => {
+      document.querySelector<HTMLElement>('[data-file-sidebar="md"]')!.click()
+      await new Promise(r => setTimeout(r, 0))
+      expect(document.querySelector('[data-bc-file]')!.textContent).toBe('about.md')
+    })
+
+    it('switching to json updates bcFile to package.json', async () => {
+      document.querySelector<HTMLElement>('[data-file-sidebar="json"]')!.click()
+      await new Promise(r => setTimeout(r, 0))
+      expect(document.querySelector('[data-bc-file]')!.textContent).toBe('package.json')
+    })
+
+    it('switching to spec shows bcSrc (in-source file)', async () => {
+      document.querySelector<HTMLElement>('[data-file-sidebar="md"]')!.click()
+      await new Promise(r => setTimeout(r, 0))
+      document.querySelector<HTMLElement>('[data-file-sidebar="spec"]')!.click()
+      await new Promise(r => setTimeout(r, 0))
+      expect(document.querySelector<HTMLElement>('[data-bc-src]')!.style.display).toBe('')
+    })
+
+    it('switching to json hides bcSrc (non-source file)', async () => {
+      document.querySelector<HTMLElement>('[data-file-sidebar="json"]')!.click()
+      await new Promise(r => setTimeout(r, 0))
+      expect(document.querySelector<HTMLElement>('[data-bc-src]')!.style.display).toBe('none')
+    })
+  })
+
+  describe('Context menu', () => {
+    it('right-click on editor view opens .ctx-menu', () => {
+      document.querySelector<HTMLElement>('.editor-view.active')!.dispatchEvent(
+        new MouseEvent('contextmenu', { bubbles: true, cancelable: true })
+      )
+      expect(document.querySelector('.ctx-menu')).not.toBeNull()
+    })
+
+    it('ctx-menu contains Copy Line item', () => {
+      document.querySelector<HTMLElement>('.editor-view.active')!.dispatchEvent(
+        new MouseEvent('contextmenu', { bubbles: true, cancelable: true })
+      )
+      const items = Array.from(document.querySelectorAll('.ctx-item span'))
+      expect(items.some(s => s.textContent === 'Copy Line')).toBe(true)
+    })
+
+    it('ctx-menu contains Add Breakpoint item', () => {
+      document.querySelector<HTMLElement>('.editor-view.active')!.dispatchEvent(
+        new MouseEvent('contextmenu', { bubbles: true, cancelable: true })
+      )
+      const items = Array.from(document.querySelectorAll('.ctx-item span'))
+      expect(items.some(s => s.textContent === 'Add Breakpoint')).toBe(true)
+    })
+
+    it('Escape closes ctx-menu', () => {
+      document.querySelector<HTMLElement>('.editor-view.active')!.dispatchEvent(
+        new MouseEvent('contextmenu', { bubbles: true, cancelable: true })
+      )
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))
+      expect(document.querySelector('.ctx-menu')).toBeNull()
+    })
+
+    it('ctx-menu has separators between groups', () => {
+      document.querySelector<HTMLElement>('.editor-view.active')!.dispatchEvent(
+        new MouseEvent('contextmenu', { bubbles: true, cancelable: true })
+      )
+      expect(document.querySelectorAll('.ctx-sep').length).toBeGreaterThan(0)
+    })
+  })
+
+  describe('Source control staging', () => {
+    it('click sc-status M → S with staged class', () => {
+      const s = document.querySelector<HTMLElement>('.sc-status')!
+      s.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+      expect(s.textContent).toBe('S')
+      expect(s.classList.contains('staged')).toBe(true)
+    })
+
+    it('click staged sc-status → reverts to M', () => {
+      const s = document.querySelector<HTMLElement>('.sc-status')!
+      s.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+      s.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+      expect(s.textContent).toBe('M')
+    })
+
+    it('reverting removes staged class', () => {
+      const s = document.querySelector<HTMLElement>('.sc-status')!
+      s.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+      s.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+      expect(s.classList.contains('staged')).toBe(false)
     })
   })
 })

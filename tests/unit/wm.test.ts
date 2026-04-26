@@ -208,4 +208,58 @@ describe('Window Manager — DOM', () => {
       expect(document.querySelector('.dock-icon')!.classList.contains('win-open')).toBe(true)
     })
   })
+
+  describe('toggleMax (green button)', () => {
+    beforeEach(() => {
+      Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 1440 })
+    })
+
+    it('click .g adds .maximized class', () => {
+      document.querySelector<HTMLElement>('.tl .g')!.click()
+      expect(document.querySelector('[data-win-id="test"]')!.classList.contains('maximized')).toBe(true)
+    })
+
+    it('click .g sets state.maximized to true', () => {
+      document.querySelector<HTMLElement>('.tl .g')!.click()
+      expect(mod.state['test'].maximized).toBe(true)
+    })
+
+    it('click .g saves preMax with original dimensions', () => {
+      const win = document.querySelector<HTMLElement>('[data-win-id="test"]')!
+      win.style.left = '100px'
+      win.style.top = '50px'
+      document.querySelector<HTMLElement>('.tl .g')!.click()
+      expect(mod.state['test'].preMax?.l).toBe('100px')
+      expect(mod.state['test'].preMax?.t).toBe('50px')
+    })
+
+    it('click .g twice removes .maximized class', () => {
+      document.querySelector<HTMLElement>('.tl .g')!.click()
+      document.querySelector<HTMLElement>('.tl .g')!.click()
+      expect(document.querySelector('[data-win-id="test"]')!.classList.contains('maximized')).toBe(false)
+    })
+
+    it('click .g twice sets state.maximized to false', () => {
+      document.querySelector<HTMLElement>('.tl .g')!.click()
+      document.querySelector<HTMLElement>('.tl .g')!.click()
+      expect(mod.state['test'].maximized).toBe(false)
+    })
+
+    it('click .g twice restores original left/top', () => {
+      const win = document.querySelector<HTMLElement>('[data-win-id="test"]')!
+      win.style.left = '100px'
+      win.style.top = '50px'
+      document.querySelector<HTMLElement>('.tl .g')!.click()
+      document.querySelector<HTMLElement>('.tl .g')!.click()
+      expect(win.style.left).toBe('100px')
+      expect(win.style.top).toBe('50px')
+    })
+
+    it('after unmaximize vi.runAllTimers clears transition', () => {
+      document.querySelector<HTMLElement>('.tl .g')!.click()
+      document.querySelector<HTMLElement>('.tl .g')!.click()
+      vi.runAllTimers()
+      expect(document.querySelector<HTMLElement>('[data-win-id="test"]')!.style.transition).toBe('')
+    })
+  })
 })
