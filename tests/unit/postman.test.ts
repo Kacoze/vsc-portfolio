@@ -149,6 +149,10 @@ const POSTMAN_HTML = `
       <span id="resp-time"></span>
       <div class="resp-body" id="resp-body"></div>
     </div>
+    <div data-rpanel="tests">
+      <button class="rest-run-tests" type="button" id="run-tests-btn">▶ Run Tests</button>
+      <div id="rest-test-results"></div>
+    </div>
   </form>
 </section>`
 
@@ -306,6 +310,68 @@ describe('postman.init() — DOM', () => {
 
       await vi.runAllTimersAsync()
       expect(document.querySelector<HTMLButtonElement>('.rest-send')!.disabled).toBe(false)
+    })
+  })
+
+  describe('Run Tests button', () => {
+    it('click disables button and shows Running', () => {
+      const btn = document.getElementById('run-tests-btn') as HTMLButtonElement
+      btn.click()
+      expect(btn.disabled).toBe(true)
+      expect(btn.textContent).toBe('⟳ Running…')
+    })
+
+    it('after timers shows test results', () => {
+      document.getElementById('run-tests-btn')!.click()
+      vi.runAllTimers()
+      const results = document.getElementById('rest-test-results')!
+      expect(results.textContent).toContain('PASS')
+    })
+
+    it('after timers shows summary with passing count', () => {
+      document.getElementById('run-tests-btn')!.click()
+      vi.runAllTimers()
+      expect(document.querySelector('.rtr-sum')?.textContent).toContain('passing')
+    })
+
+    it('after timers button is re-enabled', () => {
+      const btn = document.getElementById('run-tests-btn') as HTMLButtonElement
+      btn.click()
+      vi.runAllTimers()
+      expect(btn.disabled).toBe(false)
+    })
+
+    it('after timers button label restored', () => {
+      const btn = document.getElementById('run-tests-btn') as HTMLButtonElement
+      btn.click()
+      vi.runAllTimers()
+      expect(btn.textContent).toBe('▶ Run Tests')
+    })
+  })
+
+  describe('field error clearing', () => {
+    it('typing in name field clears its error', () => {
+      // trigger error first
+      document.querySelector('form')!.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }))
+      const nameInput = document.getElementById('f-name') as HTMLInputElement
+      expect(nameInput.getAttribute('aria-invalid')).toBe('true')
+      // typing clears it
+      nameInput.dispatchEvent(new Event('input', { bubbles: true }))
+      expect(nameInput.getAttribute('aria-invalid')).toBeNull()
+    })
+
+    it('typing in email field clears its error', () => {
+      document.querySelector('form')!.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }))
+      const emailInput = document.getElementById('f-email') as HTMLInputElement
+      emailInput.dispatchEvent(new Event('input', { bubbles: true }))
+      expect(emailInput.getAttribute('aria-invalid')).toBeNull()
+    })
+
+    it('typing in message field clears its error', () => {
+      document.querySelector('form')!.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }))
+      const msgInput = document.getElementById('f-msg') as HTMLTextAreaElement
+      msgInput.dispatchEvent(new Event('input', { bubbles: true }))
+      expect(msgInput.getAttribute('aria-invalid')).toBeNull()
     })
   })
 })

@@ -9,6 +9,7 @@ const HTML = `
   <div class="ci-badge" id="ci-badge">✓ Passed</div>
   <div id="ci-exit">→ process exited with code 0</div>
   <button id="ci-rerun" type="button">↻ Re-run all jobs</button>
+  <span class="sc-hash" data-diff="+added line&#10;-removed line&#10; context line">abc1234</span>
 </section>`
 
 describe('actions.init()', () => {
@@ -104,6 +105,52 @@ describe('actions.init()', () => {
       document.getElementById('ci-rerun')!.click()
       vi.runAllTimers()
       expect(badge.classList.contains('running')).toBe(false)
+    })
+  })
+
+  describe('diff popup (.sc-hash)', () => {
+    it('mouseenter creates diff popup in body', () => {
+      document.querySelector<HTMLElement>('.sc-hash')!.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }))
+      expect(document.querySelector('.diff-pop')).not.toBeNull()
+    })
+
+    it('popup contains added line with diff-add class', () => {
+      document.querySelector<HTMLElement>('.sc-hash')!.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }))
+      expect(document.querySelector('.diff-add')?.textContent).toBe('+added line')
+    })
+
+    it('popup contains removed line with diff-del class', () => {
+      document.querySelector<HTMLElement>('.sc-hash')!.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }))
+      expect(document.querySelector('.diff-del')?.textContent).toBe('-removed line')
+    })
+
+    it('context line has no class', () => {
+      document.querySelector<HTMLElement>('.sc-hash')!.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }))
+      const divs = document.querySelectorAll('.diff-pop > div')
+      expect(divs[2].className).toBe('')
+    })
+
+    it('mousemove positions popup', () => {
+      const hash = document.querySelector<HTMLElement>('.sc-hash')!
+      hash.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }))
+      hash.dispatchEvent(new MouseEvent('mousemove', { bubbles: true, clientX: 100, clientY: 200 }))
+      const pop = document.querySelector<HTMLElement>('.diff-pop')!
+      expect(pop.style.left).toBe('116px')
+      expect(pop.style.top).toBe('180px')
+    })
+
+    it('mouseleave removes popup', () => {
+      const hash = document.querySelector<HTMLElement>('.sc-hash')!
+      hash.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }))
+      hash.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }))
+      expect(document.querySelector('.diff-pop')).toBeNull()
+    })
+
+    it('second mouseenter replaces previous popup', () => {
+      const hash = document.querySelector<HTMLElement>('.sc-hash')!
+      hash.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }))
+      hash.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }))
+      expect(document.querySelectorAll('.diff-pop').length).toBe(1)
     })
   })
 })
