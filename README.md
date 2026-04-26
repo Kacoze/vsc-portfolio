@@ -1,6 +1,7 @@
 # vsc-portfolio
 
 [![CI](https://github.com/Kacoze/vsc-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/Kacoze/vsc-portfolio/actions/workflows/ci.yml)
+[![Lighthouse](https://img.shields.io/badge/Lighthouse-100%2F100-brightgreen?logo=lighthouse)](https://github.com/Kacoze/vsc-portfolio/actions/workflows/ci.yml)
 
 Portfolio site styled as a VS Code workspace — open the files from the sidebar.
 
