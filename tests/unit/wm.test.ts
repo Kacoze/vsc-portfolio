@@ -262,4 +262,92 @@ describe('Window Manager — DOM', () => {
       expect(document.querySelector<HTMLElement>('[data-win-id="test"]')!.style.transition).toBe('')
     })
   })
+
+  describe('startDrag', () => {
+    let win: HTMLElement
+    let tb: HTMLElement
+    let canvas: HTMLElement
+
+    beforeEach(() => {
+      Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 1440 })
+      win = document.querySelector<HTMLElement>('[data-win-id="test"]')!
+      tb = win.querySelector<HTMLElement>('.win-tb')!
+      canvas = document.querySelector<HTMLElement>('.wm-canvas')!
+      Object.defineProperty(canvas, 'clientWidth', { value: 1440, configurable: true })
+      Object.defineProperty(canvas, 'clientHeight', { value: 900, configurable: true })
+      Object.defineProperty(win, 'offsetLeft', { value: 100, configurable: true })
+      Object.defineProperty(win, 'offsetTop', { value: 50, configurable: true })
+      Object.defineProperty(win, 'offsetWidth', { value: 500, configurable: true })
+    })
+
+    it('mousemove after mousedown on win-tb moves window', () => {
+      // ox = clientX(150) - offsetLeft(100) = 50; newLeft = 250 - 50 = 200
+      // oy = clientY(70)  - offsetTop(50)  = 20; newTop  = 120 - 20 = 100
+      tb.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, clientX: 150, clientY: 70 }))
+      document.dispatchEvent(new MouseEvent('mousemove', { bubbles: true, clientX: 250, clientY: 120 }))
+      expect(win.style.left).toBe('200px')
+      expect(win.style.top).toBe('100px')
+      document.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+    })
+
+    it('mouseup stops drag — subsequent mousemove has no effect', () => {
+      tb.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, clientX: 150, clientY: 70 }))
+      document.dispatchEvent(new MouseEvent('mousemove', { bubbles: true, clientX: 250, clientY: 120 }))
+      document.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+      const leftAfterUp = win.style.left
+      document.dispatchEvent(new MouseEvent('mousemove', { bubbles: true, clientX: 800, clientY: 500 }))
+      expect(win.style.left).toBe(leftAfterUp)
+    })
+
+    it('drag clamps left at canvas.clientWidth - 100', () => {
+      tb.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, clientX: 150, clientY: 70 }))
+      document.dispatchEvent(new MouseEvent('mousemove', { bubbles: true, clientX: 99999, clientY: 70 }))
+      expect(parseInt(win.style.left)).toBeLessThanOrEqual(1440 - 100)
+      document.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+    })
+  })
+
+  describe('startResize', () => {
+    let win: HTMLElement
+
+    beforeEach(() => {
+      Object.defineProperty(window, 'innerWidth', { writable: true, configurable: true, value: 1440 })
+      win = document.querySelector<HTMLElement>('[data-win-id="test"]')!
+      Object.defineProperty(win, 'offsetLeft', { value: 100, configurable: true })
+      Object.defineProperty(win, 'offsetTop', { value: 50, configurable: true })
+      Object.defineProperty(win, 'offsetWidth', { value: 500, configurable: true })
+      Object.defineProperty(win, 'offsetHeight', { value: 400, configurable: true })
+    })
+
+    it('addRh adds 8 resize handles to window', () => {
+      expect(win.querySelectorAll('.rh').length).toBe(8)
+    })
+
+    it('mousedown on .rh-se + mousemove increases width and height', () => {
+      const rh = win.querySelector<HTMLElement>('.rh-se')!
+      rh.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, clientX: 600, clientY: 450 }))
+      document.dispatchEvent(new MouseEvent('mousemove', { bubbles: true, clientX: 650, clientY: 480 }))
+      expect(parseInt(win.style.width)).toBeGreaterThan(500)
+      expect(parseInt(win.style.height)).toBeGreaterThan(400)
+      document.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+    })
+
+    it('resize respects MIN_W — width does not go below 480', () => {
+      const rh = win.querySelector<HTMLElement>('.rh-w')!
+      rh.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, clientX: 100, clientY: 250 }))
+      document.dispatchEvent(new MouseEvent('mousemove', { bubbles: true, clientX: 99999, clientY: 250 }))
+      expect(parseInt(win.style.width)).toBeGreaterThanOrEqual(480)
+      document.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+    })
+
+    it('mouseup ends resize — further mousemove has no effect', () => {
+      const rh = win.querySelector<HTMLElement>('.rh-se')!
+      rh.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, clientX: 600, clientY: 450 }))
+      document.dispatchEvent(new MouseEvent('mousemove', { bubbles: true, clientX: 650, clientY: 480 }))
+      document.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }))
+      const widthAfterUp = win.style.width
+      document.dispatchEvent(new MouseEvent('mousemove', { bubbles: true, clientX: 900, clientY: 700 }))
+      expect(win.style.width).toBe(widthAfterUp)
+    })
+  })
 })

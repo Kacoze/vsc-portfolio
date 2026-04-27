@@ -539,3 +539,98 @@ describe('Editor module', () => {
     })
   })
 })
+
+describe('Minimap', () => {
+  beforeEach(async () => {
+    vi.useFakeTimers()
+    vi.resetModules()
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      value: vi.fn().mockReturnValue({ matches: false, addEventListener: vi.fn(), removeEventListener: vi.fn() }),
+    })
+    document.body.innerHTML = `
+<div class="vsc-win" data-active="spec">
+  <span data-title></span>
+  <div class="tabs" role="tablist"></div>
+  <div class="act-bar"></div>
+  <div class="sidebar">
+    <div class="panel-view" data-panel="explorer">
+      <div data-file-sidebar="spec" class="file active" aria-selected="true">spec</div>
+      <div data-file-sidebar="md" class="file" aria-selected="false">md</div>
+    </div>
+    <div class="sb-ln"></div>
+    <div class="sc-status m">M</div>
+  </div>
+  <div class="editor-view active" data-file="spec">
+    <div class="ln">const <span class="kw">x</span> = 1;</div>
+    <div class="ln">// comment</div>
+  </div>
+  <div class="editor-view" data-file="md">
+    <div class="ln">Hello</div>
+  </div>
+  <div class="panel-resize"></div>
+  <div class="panel">
+    <div class="ptab active" data-ptab="terminal" aria-selected="true" role="tab">Terminal</div>
+    <div class="pv active" data-pv="terminal">
+      <div class="term-body">
+        <div class="t-line term-input-line">
+          <input class="term-input" type="text">
+        </div>
+      </div>
+      <span class="term-label"></span>
+    </div>
+  </div>
+  <div class="status">
+    <span aria-label="Branch">⎇ main</span>
+    <span>✓ Prettier</span>
+    <span>UTF-8</span>
+    <span>LF</span>
+  </div>
+  <span data-bc-file></span>
+  <span data-bc-src style="display:none"></span>
+  <span data-bc-srcsp style="display:none"></span>
+</div>
+<div id="vsc-minimap"></div>`
+    await import('../../src/editor')
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  it('populates #vsc-minimap with .mm-line elements after init', () => {
+    vi.runAllTimers()
+    expect(document.getElementById('vsc-minimap')!.querySelector('.mm-line')).not.toBeNull()
+  })
+
+  it('contains .mm-cursor after init', () => {
+    vi.runAllTimers()
+    expect(document.getElementById('vsc-minimap')!.querySelector('.mm-cursor')).not.toBeNull()
+  })
+
+  it('line count matches number of .ln elements in active view', () => {
+    vi.runAllTimers()
+    const lnCount = document.querySelector('.editor-view.active')!.querySelectorAll('.ln').length
+    expect(document.getElementById('vsc-minimap')!.querySelectorAll('.mm-line').length).toBe(lnCount)
+  })
+
+  it('changing data-active rebuilds minimap for the new file', async () => {
+    vi.runAllTimers()
+    // spec view has 2 .ln; after switching to md (1 .ln) minimap should have 1 line
+    document.querySelector<HTMLElement>('.vsc-win')!.dataset.active = 'md'
+    await Promise.resolve() // flush MutationObserver microtask so setTimeout is registered
+    vi.runAllTimers()
+    expect(document.getElementById('vsc-minimap')!.querySelectorAll('.mm-line').length).toBe(1)
+  })
+
+  it('minimap click sets scrollTop on active editor-view', () => {
+    vi.runAllTimers()
+    const mm = document.getElementById('vsc-minimap')!
+    const view = document.querySelector<HTMLElement>('.editor-view.active')!
+    Object.defineProperty(view, 'scrollHeight', { value: 500, configurable: true })
+    Object.defineProperty(view, 'clientHeight', { value: 100, configurable: true })
+    mm.getBoundingClientRect = () => ({ top: 0, left: 0, right: 10, bottom: 200, width: 10, height: 200 } as DOMRect)
+    mm.dispatchEvent(new MouseEvent('click', { bubbles: true, clientX: 5, clientY: 100 }))
+    expect(view.scrollTop).toBeGreaterThanOrEqual(0)
+  })
+})
